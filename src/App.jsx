@@ -66,10 +66,10 @@ async function initFirebase() {
   if (firebaseApp) return { app: firebaseApp, auth: firebaseAuth };
   try {
     const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js");
-    const { getAuth, GoogleAuthProvider, signInWithPopup, signOut } = await import("https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js");
+    const { getAuth, GoogleAuthProvider, signInWithRedirect, signOut } = await import("https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js");
     firebaseApp  = initializeApp(FIREBASE_CONFIG);
     firebaseAuth = getAuth(firebaseApp);
-    return { app: firebaseApp, auth: firebaseAuth, GoogleAuthProvider, signInWithPopup, signOut };
+    return { app: firebaseApp, auth: firebaseAuth, GoogleAuthProvider, signInWithRedirect, signOut };
   } catch (e) {
     console.error("Firebase init error:", e);
     return null;
@@ -104,7 +104,7 @@ Determiná el estado emocional. Respondé SOLO en JSON sin markdown:
     : prompt;
 
   const res  = await fetch("https://api.anthropic.com/v1/messages", {
-    method:"POST", headers:{"Content-Type":"application/json"},
+    method:"POST", headers:{"Content-Type":"application/json","anthropic-version":"2023-06-01","anthropic-dangerous-allow-browser":"true"},
     body: JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:1000, messages:[{ role:"user", content }] }),
   });
   const data = await res.json();
@@ -114,7 +114,7 @@ Determiná el estado emocional. Respondé SOLO en JSON sin markdown:
 
 async function chatVet(messages, especie) {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method:"POST", headers:{"Content-Type":"application/json"},
+    method:"POST", headers:"Content-Type":"application/json","anthropic-version":"2023-06-01","anthropic-dangerous-allow-browser":"true"
     body: JSON.stringify({
       model:"claude-sonnet-4-20250514", max_tokens:1000,
       system:`Sos el Dr. Paws, veterinario virtual de AnimusPet. Español rioplatense, cálido y profesional. Especialista en ${especie==="gato"?"felinos":"caninos"}. Máximo 3 párrafos. Nunca reemplazás consulta presencial. Terminás con consejo accionable.`,
@@ -192,7 +192,7 @@ export default function App() {
       const fb = await initFirebase();
       if (!fb) throw new Error("Firebase no inicializado");
       const provider = new fb.GoogleAuthProvider();
-      const result   = await fb.signInWithPopup(fb.auth, provider);
+      const result   = await fb.signInWithRedirect(fb.auth, provider);
       setUser({ name: result.user.displayName, email: result.user.email, photo: result.user.photoURL });
     } catch (e) {
       console.error(e);
