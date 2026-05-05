@@ -3,16 +3,16 @@ import { useState, useRef, useEffect, useCallback } from "react";
 // ============================================================
 // ⚠️  PEGÁ TUS KEYS AQUÍ
 // ============================================================
-const OPENAI_KEY = "PEGA_TU_OPENAI_KEY_AQUI";
+const OPENAI_KEY = "sk-proj-uWeQn8rYxgHTP70DHTxeH3hBE2rZqt2NRJtYfdo93D-V9kt0h5CD8kwySYfQ2CAWIl1FCb7E1cT3BlbkFJn8UfSnXN8KqBydrQV0OFLxOz2yzB_hGe7pcv8ptBzsicRArVxyodQ_eYBZyhemKoIS4Cw-SLIA_KEY_AQUI";
 
 // Firebase config — pegá el tuyo cuando lo tengas
 const FIREBASE_CONFIG = {
-  apiKey: "PEGA_TU_FIREBASE_API_KEY",
-  authDomain: "PEGA_TU_AUTH_DOMAIN",
-  projectId: "PEGA_TU_PROJECT_ID",
-  storageBucket: "PEGA_TU_STORAGE_BUCKET",
-  messagingSenderId: "PEGA_TU_SENDER_ID",
-  appId: "PEGA_TU_APP_ID",
+  apiKey: "AIzaSyBhfZ8S6QIq5CFRiqN-YptL1AicYmSubkY",
+  authDomain: "animuspet.firebaseapp.com",
+  projectId: "animuspet",
+  storageBucket: "animuspet.firebasestorage.app",
+  messagingSenderId: "348600064091",
+  appId: "1:348600064091:web:718edd9365f8dcee6b877e",
 };
 
 // MercadoPago Public Key
