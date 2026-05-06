@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 // ============================================================
 // ⚠️  PEGÁ SOLO ESTA KEY — el resto ya está configurado
 // ============================================================
-const OPENAI_KEY = "PEGA_TU_OPENAI_KEY_AQUI"; // sk-proj-...
+const OPENAI_KEY = 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; // sk-proj-...
 // Claude API Key → ya está en Vercel como ANTHROPIC_API_KEY
 // ============================================================
 
